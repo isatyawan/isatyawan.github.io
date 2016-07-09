@@ -11,16 +11,16 @@
 	giscloud.apiKey("675af2b071491f3922eebe26ee803cbb");
 
 	function setFeature (field_name, field_value) {
-		var fid,priority;
+		var fid, priority, geometry;
 	
         //find feature using layer id -> 967542 and feature id -> 1 
-		giscloud.features.byLayer(1522116, {where: "workorder='12345678'", geometry: false})
-		    .done(function(features){
-			    fid = features[0].featureId;
-				alert(fid);
-				priority= features[0].data.priority;
-			});
-        alert ("fid=" + fid + ",priority=" + priority + ",field_name="+field_name + ",field_value=" + field_value);
+		giscloud.features.byLayer(1522116, {where: "workorder='12345678'", geometry: 'wkt'})
+		.done(function (features) {
+		    fid = features[0].featureId;
+			priority = features[0].data.priority;
+			geometry = features[0].geometry;
+		});
+        alert ("fid=" + fid + ",geometry=" + geometry + ",field_name="+field_name + ",field_value=" + field_value);
 		giscloud.features.byId(1522116, fid, changeStatus);
 		alert("update ok!");
 
