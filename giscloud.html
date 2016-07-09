@@ -18,7 +18,7 @@
 		    .done(function(features){
 			    fid = features[0].id;
 			});
-        
+        alert ("fid=" + fid + ",field_name="+field_name + ",field_value=" + field_value);
 		giscloud.features.byId(1522116, fid, changeStatus);
 		alert("update ok!");
 
