@@ -17,6 +17,7 @@
 		giscloud.features.byLayer(1522116, {where: "workorder='" + field_value + "'", geometry: false})
 		    .done(function(features){
 			    fid = features[0].featureId;
+				alert(fid);
 				priority= features[0].data.priority;
 			});
         alert ("fid=" + fid + ",priority=" + priority + ",field_name="+field_name + ",field_value=" + field_value);
