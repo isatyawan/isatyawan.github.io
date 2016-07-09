@@ -14,9 +14,9 @@
 		var fid,priority;
 	
         //find feature using layer id -> 967542 and feature id -> 1 
-		giscloud.features.byLayer(1522116, {where: "workorder='" + field_value + "'"})
+		giscloud.features.byLayer(1522116, {where: "workorder='" + field_value + "'", geometry: false})
 		    .done(function(features){
-			    fid = features[0].id;
+			    fid = features[0].featureId;
 				priority= features[0].data.priority;
 			});
         alert ("fid=" + fid + ",priority=" + priority + ",field_name="+field_name + ",field_value=" + field_value);
