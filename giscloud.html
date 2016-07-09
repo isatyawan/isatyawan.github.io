@@ -10,16 +10,27 @@
 
 	giscloud.apiKey("675af2b071491f3922eebe26ee803cbb");
 
-	function setFeature () {
-
+	function setFeature (field_name, field_value) {
+		var fid;
+	
         //find feature using layer id -> 967542 and feature id -> 1 
-        giscloud.features.byId(1522116, 1, changeStatus);
+		giscloud.features.byLayer(1522116, {where: field_name + "='" + field_value + "'"})
+		    .done(function(features){
+			    fid = features[0].data.id
+			});
+        
+		giscloud.features.byId(1522116, fid, changeStatus);
+		alert("update ok!")
 
 	}
 
+	function getFeature () {
+	
+	}
+	
 	function changeStatus (feature) {
         //change the status
-        feature.data.status = "modified";
+        feature.data.status = "updated";
         //now just update feature
         feature.update();
 		console.log(feature.data.status);
