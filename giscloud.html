@@ -16,11 +16,11 @@
         //find feature using layer id -> 967542 and feature id -> 1 
 		giscloud.features.byLayer(1522116, {where: field_name + "='" + field_value + "'"})
 		    .done(function(features){
-			    fid = features[0].data.id
+			    fid = features[0].id;
 			});
         
 		giscloud.features.byId(1522116, fid, changeStatus);
-		alert("update ok!")
+		alert("update ok!");
 
 	}
 
