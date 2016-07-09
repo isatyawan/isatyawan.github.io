@@ -11,7 +11,7 @@
 	giscloud.apiKey("675af2b071491f3922eebe26ee803cbb");
 
 	function setFeature (field_name, field_value) {
-		var fid, priority, geometry;
+		var fid, fid2, res;
 	
         //find feature using layer id -> 967542 and feature id -> 1 
 		//giscloud.features.byLayer(1522116, {where: "workorder='12345678'", geometry: 'wkt'})
@@ -27,8 +27,10 @@
         giscloud.tables.query("defect_wo", query)
         .done(function (result) {
             fid = result.__id;
+			fid2 = result.ogc_fid;
+			res = result.__created;
         });
-		
+		alert (fid + " " + fid2 + " " + res)
 		giscloud.features.byId(1522116, fid, changeStatus);
 		alert("update ok!");
 
