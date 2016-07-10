@@ -5,13 +5,11 @@
   <title>GIS Cloud</title>
   <script src="https://api.giscloud.com/1/api.js" type="text/javascript"></script>
   <script type="text/javascript">
-	var mapId = 1522115,
-    $ = giscloud.exposeJQuery();
+	var fName, fValue, fid, mapId = 1522115, $ = giscloud.exposeJQuery();
 
 	giscloud.apiKey("675af2b071491f3922eebe26ee803cbb");
 
-	function setFeature (field_name, field_value) {
-		var fid, fid2, res;
+	function setFeature (FIELD_NAME_PARAM, FIELD_NAME_VALUE) {
 	
         //find feature using layer id -> 967542 and feature id -> 1 
 		//giscloud.features.byLayer(1522116, {where: "workorder='12345678'", geometry: 'wkt'})
@@ -21,20 +19,24 @@
 		//	geometry = features[0].geometry;
 		//});
         //alert ("fid=" + fid + ",geometry=" + geometry + ",field_name="+field_name + ",field_value=" + field_value);
+		
 		var query = new giscloud.Query("defect_wo")
                         .equalTo("workorder", "12345679")
                         .first();
         giscloud.tables.query("defect_wo", query)
         .done(function (result) {
-            fid = result.__id;
-			fid2 = result.ogc_fid;
-			res = result.__created;
-			alert (fid + " " + fid2 + " " + res);
+			fid = result.ogc_fid;
+			alert (fid);
         });
-		alert (fid + " " + fid2 + " " + res);
-		giscloud.features.byId(1522116, fid, changeStatus);
-		alert("update ok!");
-
+		alert (fid);
+		
+		fName = FIELD_NAME_PARAM;
+		fValue = FIELD_NAME_VALUE;
+		
+		if (fName === "status") {
+		   giscloud.features.byId(1522116, fid, changeStatus);
+		   alert("update status ok!");
+		}
 	}
 
 	function getFeature () {
@@ -43,10 +45,10 @@
 	
 	function changeStatus (feature) {
         //change the status
-        feature.data.status = "updated";
+        feature.data.status = fValue;
         //now just update feature
         feature.update();
-		console.log(feature.data.status);
+		alert(feature.data.status);
     }
 
   </script>
