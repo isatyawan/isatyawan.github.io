@@ -22,13 +22,14 @@
 		//});
         //alert ("fid=" + fid + ",geometry=" + geometry + ",field_name="+field_name + ",field_value=" + field_value);
 		var query = new giscloud.Query("defect_wo")
-                        .equalTo("ogc_fid", "2")
+                        .equalTo("status", "new")
                         .first();
         giscloud.tables.query("defect_wo", query)
         .done(function (result) {
             fid = result.__id;
 			fid2 = result.ogc_fid;
 			res = result.__created;
+			alert (fid + " " + fid2 + " " + res);
         });
 		alert (fid + " " + fid2 + " " + res);
 		giscloud.features.byId(1522116, fid, changeStatus);
