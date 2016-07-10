@@ -24,7 +24,8 @@
 		var query = new giscloud.Query("defect_wo")
                         .equalTo("workorder", "12345679")
                         .first();
-        giscloud.tables.query("defect_wo", query)
+        
+		giscloud.tables.query("defect_wo", query)
         .done(function (result) {
 			fid = result.ogc_fid;
 			alert (fid);
