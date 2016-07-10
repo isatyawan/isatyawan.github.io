@@ -22,7 +22,7 @@
 		//});
         //alert ("fid=" + fid + ",geometry=" + geometry + ",field_name="+field_name + ",field_value=" + field_value);
 		var query = new giscloud.Query("defect_wo")
-                        .equalTo("status", "new")
+                        .equalTo("workorder", "12345679")
                         .first();
         giscloud.tables.query("defect_wo", query)
         .done(function (result) {
