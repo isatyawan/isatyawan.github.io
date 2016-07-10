@@ -28,18 +28,15 @@
 		giscloud.tables.query("defect_wo", query)
         .done(function (result) {
 			fid = result.ogc_fid;
-			alert ("in query -" + fid);
+			alert ("in query -" + fid);		
+			fName = FIELD_NAME_PARAM;
+		    fValue = FIELD_NAME_VALUE;
+		
+			if (fName === "status") {
+			   giscloud.features.byId(1522116, fid, changeStatus);
+			   alert(fid + " - update status ok!");
+			}
         });
-		
-		alert ("in set feature - " + fid);
-		
-		fName = FIELD_NAME_PARAM;
-		fValue = FIELD_NAME_VALUE;
-		
-		if (fName === "status") {
-		   giscloud.features.byId(1522116, fid, changeStatus);
-		   alert(fid + " - update status ok!");
-		}
 	}
 
 	function getFeature () {
