@@ -28,16 +28,17 @@
 		giscloud.tables.query("defect_wo", query)
         .done(function (result) {
 			fid = result.ogc_fid;
-			alert (fid);
+			alert ("in query -" + fid);
         });
-		alert (fid);
+		
+		alert ("in set feature - " + fid);
 		
 		fName = FIELD_NAME_PARAM;
 		fValue = FIELD_NAME_VALUE;
 		
 		if (fName === "status") {
 		   giscloud.features.byId(1522116, fid, changeStatus);
-		   alert("update status ok!");
+		   alert(fid + " - update status ok!");
 		}
 	}
 
